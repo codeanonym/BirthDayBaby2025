@@ -1,0 +1,214 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: serif;
+    user-select: none;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  li {
+    list-style: none;
+    color: #f3c77c;
+  }
+  
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .followCursor {
+    width: 25px;
+    height: 25px;
+    background-color: lightslategrey;
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+  }
+  
+  body {
+    background-image: url("https://images.unsplash.com/photo-1689870374207-d0ad32ff485e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    background-position: cover;
+    background-size: cover;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    overflow-x: hidden;
+  }
+  
+  header > .logo {
+    font-size: 1.2rem;
+    color: #f3c77c;
+    font-weight: 900;
+    padding: 0.2rem 1rem;
+    box-shadow: 0 0 0.3rem;
+    border-radius: 12px;
+    white-space: nowrap;
+  }
+  
+  header ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  header ul a {
+    padding: 2rem;
+    font-size: 1.5rem;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  .header__icons {
+    display: none;
+  }
+  .header__icons > .ri-menu-3-line {
+    display: none;
+  }
+  .header__icons > .ri-close-large-fill {
+    display: none;
+  }
+  
+  /* For phones (up to 600px) */
+  @media only screen and (max-width: 600px) {
+    .menu {
+      display: none;
+    }
+    header {
+      justify-content: center;
+      align-items: stretch;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(138, 138, 138, 0.1);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(120px);
+    }
+  
+    header > .logo {
+      font-size: 1.4rem;
+      position: absolute;
+      top: 5%;
+    }
+  
+    header ul {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    header ul a {
+      padding: 2rem;
+      font-size: 1.8rem;
+      font-weight: 400;
+      width: 100%;
+    }
+  
+    .header__icons {
+      display: block;
+    }
+  
+    .header__icons .ri-menu-3-line {
+      display: block;
+      color: #f3c77c;
+      font-weight: 900;
+      font-size: 2rem;
+      position: absolute;
+      top: 5%;
+      right: 10%;
+    }
+    .header__icons .ri-close-large-fill {
+      display: none;
+      color: #f3c77c;
+      font-weight: 900;
+      font-size: 2rem;
+      position: absolute;
+      top: 5%;
+      right: 10%;
+    }
+  }
+  
+  /* For tablets and laptops (601px to 1024px) */
+  @media only screen and (min-width: 601px) and (max-width: 1024px) {
+    .menu {
+      display: none;
+    }
+    header {
+      justify-content: center;
+      align-items: stretch;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(138, 138, 138, 0.1);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(120px);
+    }
+  
+    header > .logo {
+      font-size: 1.4rem;
+      position: absolute;
+      top: 5%;
+    }
+  
+    header ul {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    header ul a {
+      padding: 2rem;
+      font-size: 1.8rem;
+      font-weight: 400;
+      width: 100%;
+    }
+  
+    .header__icons {
+      display: block;
+    }
+  
+    .header__icons .ri-menu-3-line {
+      display: block;
+      color: #f3c77c;
+      font-weight: 900;
+      font-size: 2rem;
+      position: absolute;
+      top: 5%;
+      right: 10%;
+    }
+    .header__icons .ri-close-large-fill {
+      display: none;
+      color: #f3c77c;
+      font-weight: 900;
+      font-size: 2rem;
+      position: absolute;
+      top: 5%;
+      right: 10%;
+    }
+  }
+  
+  /* Hero Styling */
+  
+  .main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    overflow: hidden;
+  }
+  .main h2 {
+    font-size: clamp(2em, 5vw, 5em); /* Scales based on viewport width */
+    font-weight: 900;
+    text-align: center;
+    color: rgb(243, 159, 13);
+  }
+  .main h2 span {
+    display: inline-block;
+  }
+  
