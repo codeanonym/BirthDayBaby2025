@@ -211,4 +211,22 @@
   .main h2 span {
     display: inline-block;
   }
+
+  /* Footer Styling*/
+  .footer-right {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    text-align: right;
+    padding: 10px;
+  }
   
+  .footer__logo {
+    font-size: 1.2rem;
+    color: #f3c77c;
+    font-weight: 900;
+    padding: 0.2rem 1rem;
+    box-shadow: 0 0 0.3rem;
+    border-radius: 12px;
+    white-space: nowrap;
+  }
