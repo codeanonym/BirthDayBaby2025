@@ -946,6 +946,60 @@
       .friends-activity {
         display: none;
       }
+
+      /* //flip cards// */
+
+      .card-flipper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        
+        .image-container.flipped .card-flipper {
+            transform: rotateY(180deg);
+        }
+        
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card-front {
+            z-index: 2;
+        }
+        
+        .card-back {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, #2c3e50, #1a2533);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        /* Back side custom styling */
+        .message-title {
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .message-content {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            max-width: 90%;
+        }
+        
     }
     </style>
 
@@ -1002,46 +1056,94 @@
             <h1>All the good times</h1>
             <div class="activity-container">
               <div class="image-container img-one">
+                <div class="card-flipper">
+                  <div class="card-front">
                 <img src="./photos/hottie.jpeg" alt="tennis" />
                 <div class="overlay">
                   <h3>Hottie</h3>
                 </div>
+                <div class="card-back">
+                  <h3 class="message-title">Precious Heart</h3>
+                  <p class="message-content">Your kindness and warmth make every moment around you special.</p>
+              </div>
+              </div>
+              </div>
               </div>
 
               <div class="image-container img-two">
+                <div class="card-flipper">
+                  <div class="card-front">
                 <img src="./photos/Saree beauty.jpeg" alt="itika" />
                 <div class="overlay">
                   <h3>Peace</h3>
                 </div>
+                <div class="card-back">
+                  <h3 class="message-title">Precious Heart</h3>
+                  <p class="message-content">Your kindness and warmth make every moment around you special.</p>
               </div>
+              </div>
+            </div>
+          </div>
 
               <div class="image-container img-three">
+                <div class="card-flipper">
+                  <div class="card-front">
                 <img src="./photos/poser.jpeg" alt="running" />
                 <div class="overlay">
                   <h3>Poser</h3>
                 </div>
+                <div class="card-back">
+                  <h3 class="message-title">Precious Heart</h3>
+                  <p class="message-content">Your kindness and warmth make every moment around you special.</p>
               </div>
+              </div>
+            </div>
+          </div>
 
               <div class="image-container img-four">
+                <div class="card-flipper">
+                  <div class="card-front">
                 <img src="./photos/office.png" alt="cycling" />
                 <div class="overlay">
                   <h3>Office boss</h3>
                 </div>
+                <div class="card-back">
+                  <h3 class="message-title">Precious Heart</h3>
+                  <p class="message-content">Your kindness and warmth make every moment around you special.</p>
               </div>
+              </div>
+            </div>
+          </div>
 
               <div class="image-container img-five">
+                <div class="card-flipper">
+                  <div class="card-front">
                 <img src="./photos/park.png" alt="yoga" />
                 <div class="overlay">
                   <h3>Normal days</h3>
                 </div>
+                <div class="card-back">
+                  <h3 class="message-title">Precious Heart</h3>
+                  <p class="message-content">Your kindness and warmth make every moment around you special.</p>
               </div>
+              </div>
+            </div>
+          </div>
 
               <div class="image-container img-six">
+                <div class="card-flipper">
+                  <div class="card-front">
                 <img src="./photos/trial.jpeg" alt="trial" />
                 <div class="overlay">
                   <h3>Sweetie</h3>
                 </div>
+                <div class="card-back">
+                  <h3 class="message-title">Precious Heart</h3>
+                  <p class="message-content">Your kindness and warmth make every moment around you special.</p>
               </div>
+              </div>
+            </div>
+          </div>
             </div>
           </div>
 
@@ -1118,24 +1220,24 @@
             </div>
 
             <div class="personal-bests">
-              <h1>Personal Bests</h1>
+              <h1>24th at a glance</h1>
               <div class="personal-bests-container">
                 <div class="best-item box-one">
                   <p>                  
                     You became self-sufficient
-                    <br>Independent living
+                    <br>Independent coding
                   </p>
                   <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/242bbd8c-aaf8-4aee-a3e4-e0df62d1ab27" alt="" />
                 </div>
                 <div class="best-item box-two">
                   <p>
-                    Started cooking for yourself .. Healthy food
+                    Started living by yourself .. Healthy food
                    </p>
                   <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/a3b3cb3a-5127-498b-91cc-a1d39499164a" alt="" />
                 </div>
                 <div class="best-item box-three">
                   <p>
-                     Saved me from myself.. Changed a life
+                     Changed me for better.. Showed me love
                   </p>
                   <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/e0ee8ffb-faa8-462a-b44d-0a18c1d9604c" alt="" />
                 </div>
@@ -1226,6 +1328,13 @@
   </body>
   <script>
   const navItems = document.querySelectorAll(".nav-item");
+  const imageContainers = document.querySelectorAll('.image-container');
+  imageContainers.forEach(container => {
+            container.addEventListener('click', () => {
+                // Toggle the flipped class
+                container.classList.toggle('flipped');
+            });
+        });
 
     navItems.forEach((navItem, i) => {
       navItem.addEventListener("click", () => {
