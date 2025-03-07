@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aesthetic Year Blog</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    body {
+      background-color: #f0e6ff;
+      background-image: linear-gradient(120deg, #f0e6ff 0%, #ffe6f2 100%);
+      color: #333;
+      overflow-x: hidden;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+      padding: 20px;
+    }
+    
+    h1 {
+      font-size: 3.5rem;
+      background: linear-gradient(45deg, #ff6ec4, #7873f5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+    
+    .subtitle {
+      font-size: 1.2rem;
+      color: #666;
+      letter-spacing: 1px;
+    }
+    
+    .month-container {
+      display: flex;
+      flex-direction: column;
+      gap: 100px;
+      margin-bottom: 50px;
+    }
+    
+    .month-card {
+      display: flex;
+      align-items: center;
+      min-height: 500px;
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .month-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+    
+    .month-card.left .text-side {
+      order: 1;
+      padding-left: 40px;
+    }
+    
+    .month-card.left .media-side {
+      order: 2;
+    }
+    
+    .month-card.right .text-side {
+      order: 2;
+      padding-right: 40px;
+    }
+    
+    .month-card.right .media-side {
+      order: 1;
+    }
+    
+    .text-side {
+      flex: 1;
+      padding: 40px;
+      z-index: 2;
+    }
+    
+    .media-side {
+      flex: 1;
+      height: 500px;
+      position: relative;
+    }
+    
+    .month-title {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+    
+    .month-title span {
+      font-size: 1.2rem;
+      font-weight: 400;
+      display: block;
+      margin-top: 5px;
+      color: #888;
+    }
+    
+    .month-content {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+    
+    .emoji-decoration {
+      font-size: 1.4rem;
+      margin-right: 10px;
+    }
+    
+    .flip-card {
+      width: 100%;
+      height: 100%;
+      perspective: 1000px;
+    }
+    
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+    
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+    }
+    
+    .flip-card-front img, .flip-card-back img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .flip-card-back {
+      transform: rotateY(180deg);
+      background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+    
+    .flip-card-back p {
+      margin-bottom: 20px;
+    }
+    
+    .video-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+    
+    .video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .tag {
+      display: inline-block;
+      padding: 5px 15px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 30px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .aesthetic-btn {
+      display: inline-block;
+      padding: 12px 25px;
+      background: linear-gradient(45deg, #7873f5, #ec77ab);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      box-shadow: 0 5px 15px rgba(236, 119, 171, 0.4);
+    }
+    
+    .aesthetic-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(236, 119, 171, 0.6);
+    }
+    
+    /* Month specific backgrounds */
+    .month-card.mar-2024 { background: linear-gradient(120deg, #dfa6ff 0%, #c8e7ff 100%); }
+    .month-card.apr-2024 { background: linear-gradient(120deg, #ffdfc4 0%, #fff2d9 100%); }
+    .month-card.may-2024 { background: linear-gradient(120deg, #c8e7ff 0%, #d5ffe6 100%); }
+    .month-card.jun-2024 { background: linear-gradient(120deg, #ffd6e0 0%, #ffc9de 100%); }
+    .month-card.jul-2024 { background: linear-gradient(120deg, #ffdd99 0%, #ffecb3 100%); }
+    .month-card.aug-2024 { background: linear-gradient(120deg, #c4e0ff 0%, #d9f2ff 100%); }
+    .month-card.sep-2024 { background: linear-gradient(120deg, #ffc2d1 0%, #ffd7e0 100%); }
+    .month-card.oct-2024 { background: linear-gradient(120deg, #ffcba5 0%, #ffdbc5 100%); }
+    .month-card.nov-2024 { background: linear-gradient(120deg, #d0c6ff 0%, #dfdbfd 100%); }
+    .month-card.dec-2024 { background: linear-gradient(120deg, #ffd1e3 0%, #ffe2ec 100%); }
+    .month-card.jan-2025 { background: linear-gradient(120deg, #c5e9ff 0%, #d9f2ff 100%); }
+    .month-card.feb-2025 { background: linear-gradient(120deg, #ffd1e3 0%, #ffeaf1 100%); }
+    .month-card.mar-2025 { background: linear-gradient(120deg, #d5c8ff 0%, #e6e0ff 100%); }
+
+    @media (max-width: 768px) {
+      .month-card {
+        flex-direction: column;
+      }
+      
+      .month-card.left .text-side,
+      .month-card.right .text-side {
+        order: 2;
+        padding: 30px;
+      }
+      
+      .month-card.left .media-side,
+      .month-card.right .media-side {
+        order: 1;
+      }
+      
+      .media-side {
+        width: 100%;
+      }
+      
+      .month-title {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>✨ My Aesthetic Year ✨</h1>
+      <p class="subtitle">capturing vibes & memories from Mar '24 to Mar '25</p>
+    </header>
+    
+    <div class="month-container">
+      <!-- March 2024 (Left text, Right image) -->
+      <div class="month-card left mar-2024">
+        <div class="text-side">
+          <h2 class="month-title">March 2024 <span>spring beginnings</span></h2>
+          <p class="month-content"><span class="emoji-decoration">🌸</span> Starting fresh with new energy and spring vibes. The days are getting longer, and everything feels possible. Time to plant seeds for the year ahead—both literally and figuratively.</p>
+          <div>
+            <span class="tag">#SpringVibes</span>
+            <span class="tag">#NewBeginnings</span>
+            <span class="tag">#MarchMood</span>
+          </div>
+          <br>
+          <a href="#" class="aesthetic-btn">Read More</a>
+        </div>
+        <div class="media-side">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="./journal/March.jpeg" alt="March 2024 - Spring flowers and new beginnings">
+              </div>
+              <div class="flip-card-back">
+                <p>Spring energy is immaculate ✨</p>
+                <span class="tag">#BlossomSeason</span>
+                <span class="tag">#SpringAesthetic</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- April 2024 (Right text, Left image) -->
+      <div class="month-card right apr-2024">
+        <div class="text-side">
+          <h2 class="month-title">April 2024 <span>shower season</span></h2>
+          <p class="month-content"><span class="emoji-decoration">☔</span> April showers bring May flowers, but they also bring cozy days inside with books and tea. Finding beauty in the rain and appreciating the quiet moments before summer chaos begins.</p>
+          <div>
+            <span class="tag">#AprilShowers</span>
+            <span class="tag">#CozyVibes</span>
+            <span class="tag">#RainyDays</span>
+          </div>
+          <br>
+          <a href="#" class="aesthetic-btn">Read More</a>
+        </div>
+        <div class="media-side">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="./journal/April.jpeg" alt="April 2024 - Rainy day aesthetic">
+              </div>
+              <div class="flip-card-back">
+                <p>Rain-soaked windows & lo-fi beats 🎵</p>
+                <span class="tag">#PetrichorVibes</span>
+                <span class="tag">#RainySzn</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- May 2024 (Left text, Right image) -->
+      <div class="month-card left may-2024">
+        <div class="text-side">
+          <h2 class="month-title">May 2024 <span>bloom era</span></h2>
+          <p class="month-content"><span class="emoji-decoration">🌿</span> Everything's blooming and so am I. May is giving main character energy with perfect weather and endless possibilities. Late afternoon sun hits different this time of year.</p>
+          <div>
+            <span class="tag">#BloomEra</span>
+            <span class="tag">#MainCharacterEnergy</span>
+            <span class="tag">#MayMagic</span>
+          </div>
+          <br>
+          <a href="#" class="aesthetic-btn">Read More</a>
+        </div>
+        <div class="media-side">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="./journal/May.jpeg" alt="May 2024 - Flowers in bloom">
+              </div>
+              <div class="flip-card-back">
+                <p>Full bloom, full heart 💚</p>
+                <span class="tag">#GreenEra</span>
+                <span class="tag">#NatureLover</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- June 2024 (Right text, Left image) -->
+      <div class="month-card right jun-2024">
+        <div class="text-side">
+          <h2 class="month-title">June 2024 <span>summer solstice</span></h2>
+          <p class="month-content"><span class="emoji-decoration">☀️</span> Longest days, shortest nights. June is that golden hour glow that never seems to end. Beach days, late sunsets, and that summer feeling we wait all year for. It's officially giving summer.</p>
+          <div>
+            <span class="tag">#SummerSolstice</span>
+            <span class="tag">#GoldenHour</span>
+            <span class="tag">#JuneVibes</span>
+          </div>
+          <br>
+          <a href="#" class="aesthetic-btn">Read More</a>
+        </div>
+        <div class="media-side">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="./journal/June.jpeg" alt="June 2024 - Summer solstice sunset">
+              </div>
+              <div class="flip-card-back">
+                <p>Golden hour is my love language ✨</p>
+                <span class="tag">#SunsetChaser</span>
+                <span class="tag">#GoldenMoments</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- July 2024 (Left text, Right video) -->
+      <div class="month-card left jul-2024">
+        <div class="text-side">
+          <h2 class="month-title">July 2024 <span>peak summer</span></h2>
+          <p class="month-content"><span class="emoji-decoration">🍉</span> Hot girl summer in full effect. July is that spontaneous road trip, that late-night swim, that perfect song at the perfect moment. Core memories being made daily.</p>
+          <div>
+            <span class="tag">#HotGirlSummer</span>
+            <span class="tag">#JulyMagic</span>
+            <span class="tag">#CoreMemories</span>
+          </div>
+          <br>
+          <a href="#" class="aesthetic-btn">Read More</a>
+        </div>
+        <div class="media-side">
+          <div class="video-container">
+            <!-- Placeholder for video -->
+            <video id="video1"  src="./journal/july.mp4" alt="July 2024 - Summer video placeholder"  ></video>
+            <p style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; background: rgba(0,0,0,0.5); padding: 10px 20px; border-radius: 20px;">Summer Vibes Video</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- August 2024 (Right text, Left image) -->
+      <div class="month-card right aug-2024">
+        <div class="text-side">
+          <h2 class="month-title">August 2024 <span>golden days</span></h2>
+          <p class="month-content"><span class="emoji-decoration">✨</span> August is holding onto summer with both hands. That bittersweet feeling knowing fall is coming but making every sun-soaked day count. The year's halfway point hits different.</p>
+          <div>
+            <span class="tag">#AugustGlow</span>
+            <span class="tag">#GoldenDays</span>
+            <span class="tag">#EndOfSummer</span>
+          </div>
+          <br>
+          <a href="#" class="aesthetic-btn">Read More</a>
+        </div>
+        <div class="media-side">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="./journal/August.jpeg" alt="August 2024 - Golden sunset">
+              </div>
+              <div class="flip-card-back">
+                <p>August sunsets hit different ✨</p>
+                <span class="tag">#GoldenHour</span>
+                <span class="tag">#SummerDaze</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- September 2024 (Left text, Right image) -->
+      <div class="month-card left sep-2024">
+        <div class="text-side">
+          <h2 class="month-title">September 2024 <span>fall beginnings</span></h2>
+          <p class="month-content"><span class="emoji-decoration">🍂</span> September is that first crisp breeze, that back-to-school energy even when you're not in school. Cozy season loading... Pumpkin spice era has officially begun.</p>
+          <div>
+            <span class="tag">#FallBeginnings</span>
+            <span class="tag">#SeptemberMood</span>
+            <span class="tag">#PumpkinSpiceSzn</span>
+          </div>
+          <br>
+          <a href="#" class="aesthetic-btn">Read More</a>
+        </div>
+        <div class="media-side">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="./journal/black.jpg" alt="September 2024 - Early fall leaves">
+              </div>
+              <div class="flip-card-back">
+                <p>Fall aesthetic unlocked 🍂</p>
+                <span class="tag">#AutumnVibes</span>
+                <span class="tag">#CozyGirl</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- October 2024 (Right text, Left image) -->
+      <div class="month-card right oct-2024">
+        <div class="text-side">
+          <h2 class="month-title">October 2024 <span>spooky szn</span></h2>
+          <p class="month-content"><span class="emoji-decoration">🎃</span> October is that perfect sweater weather, those horror movie marathons, and that extra shot of espresso in your PSL. Main character energy walking through falling leaves.</p>
+          <div>
+            <span class="tag">#SpookySzn</span>
+            <span class="tag">#SweaterWeather</span>
+            <span class="tag">#OctoberVibes</span>
+          </div>
+          <br>
+          <a href="#" class="aesthetic-btn">Read More</a>
+        </div>
+        <div class="media-side">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="./journal/October.jpeg" alt="October 2024 - Pumpkins and fall leaves">
+              </div>
+              <div class="flip-card-back">
+                <p>Spooky season is my personality 👻</p>
+                <span class="tag">#HalloweenVibes</span>
+                <span class="tag">#PumpkinEverything</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- November 2024 (Left text, Right image) -->
+      <div class="month-card left nov-2024">
+        <div class="text-side">
+          <h2 class="month-title">November 2024 <span>gratitude era</span></h2>
+          <p class="month-content"><span class="emoji-decoration">🍁</span> November is that perfect mix of gratitude and anticipation. Cozy nights in, warm drinks, and counting blessings. The calm before the holiday storm.</p>
+          <div>
+            <span class="tag">#GratitudeSzn</span>
+            <span class="tag">#NovemberMood</span>
+            <span class="tag">#CozyVibes</span>
+          </div>
+          <br>
+          <a href="#" class="aesthetic-btn">Read More</a>
+        </div>
+        <div class="media-side">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="./journal/Nov.jpeg" alt="November 2024 - Fall foliage">
+              </div>
+              <div class="flip-card-back">
+                <p>Grateful heart, full soul 🧡</p>
+                <span class="tag">#GratitudeJournal</span>
+                <span class="tag">#ThankfulThoughts</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- December 2024 (Right text, Left image) -->
+      <div class="month-card right dec-2024">
+        <div class="text-side">
+          <h2 class="month-title">December 2024 <span>winter magic</span></h2>
+          <p class="month-content"><span class="emoji-decoration">❄️</span> December is that first snowfall magic, those twinkling lights, and that feeling of wrapping up another year. Holiday szn in full effect with all the cozy vibes.</p>
+          <div>
+            <span class="tag">#WinterMagic</span>
+            <span class="tag">#HolidaySzn</span>
+            <span class="tag">#DecemberMood</span>
+          </div>
+          <br>
+          <a href="#" class="aesthetic-btn">Read More</a>
+        </div>
+        <div class="media-side">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="./journal/Dec.jpeg" alt="December 2024 - Winter wonderland">
+              </div>
+              <div class="flip-card-back">
+                <p>Winter wonderland dreams ❄️</p>
+                <span class="tag">#SnowAesthetic</span>
+                <span class="tag">#HolidayVibes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- January 2025 (Left text, Right video) -->
+      <div class="month-card left jan-2025">
+        <div class="text-side">
+          <h2 class="month-title">January 2025 <span>fresh start</span></h2>
+          <p class="month-content"><span class="emoji-decoration">✨</span> January is that clean slate energy, those fresh planners, and that feeling anything is possible. New year, new aesthetic, same me but leveled up. Main character energy all 2025.</p>
+          <div>
+            <span class="tag">#NewYearVibes</span>
+            <span class="tag">#FreshStart</span>
+            <span class="tag">#JanuaryReset</span>
+          </div>
+          <br>
+          <a href="#" class="aesthetic-btn">Read More</a>
+        </div>
+        <div class="media-side">
+          <div class="video-container">
+            <!-- Placeholder for video -->
+            <video id="video2" src="./journal/January.mp4" alt="January 2025 - New Year video placeholder"  ></video>
+            <p style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; background: rgba(0,0,0,0.5); padding: 10px 20px; border-radius: 20px;">New Year Vibes Video</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- February 2025 (Right text, Left image) -->
+      <div class="month-card right feb-2025">
+        <div class="text-side">
+          <h2 class="month-title">February 2025 <span>love season</span></h2>
+          <p class="month-content"><span class="emoji-decoration">💖</span> February is that pink aesthetic, those valentine vibes, and that cozy winter energy before spring. Self-love era in full effect. Staying warm and staying true.</p>
+          <div>
+            <span class="tag">#LoveSzn</span>
+            <span class="tag">#FebruaryMood</span>
+            <span class="tag">#SelfLoveEra</span>
+          </div>
+          <br>
+          <a href="#" class="aesthetic-btn">Read More</a>
+        </div>
+        <div class="media-side">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="./journal/Feb.png" alt="February 2025 - Valentine aesthetic">
+              </div>
+              <div class="flip-card-back">
+                <p>Love yourself first, always 💓</p>
+                <span class="tag">#SelfLoveJourney</span>
+                <span class="tag">#HeartSzn</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- March 2025 (Left text, Right image) -->
+      <!-- <div class="month-card left mar-2025"> -->
+        <!-- <div class="text-side">
+          <h2 class="month-title">March 2025 <span>full circle</span></h2>
+          <p class="month-content"><span class="emoji-decoration">🌱</span> March is that feeling of coming full circle, those first signs of spring, and that anniversary of growth. Looking back at a whole year of memories while planting new seeds. It's giving growth.</p>
+          <div>
+            <span class="tag">#FullCircleMoment</span>
+            <span class="tag">#MarchVibes</span>
+            <span class="tag">#GrowthJourney</span>
+          </div>
+          <br>
+          <a href="#" class="aesthetic-btn">Read More</a> -->
+        </div>
+        <!-- <div class="media-side">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="/api/placeholder/400/320" alt="March 2025 - Spring renewal">
+              </div>
+              <div class="flip-card-back">
+                <p>One year later, still growing ✨</p>
+                <span class="tag">#FullCircle</span>
+                <span class="tag">#GrowthMindset</span>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const video1 = document.getElementById('video1');
+      const video2 = document.getElementById('video2');
+  
+      video1.addEventListener('ended', function() {
+        video2.play();
+      });
+  
+      video2.addEventListener('ended', function() {
+        video1.play();
+      });
+  
+      video1.play();
+    });
+  </script>
+  </html>
